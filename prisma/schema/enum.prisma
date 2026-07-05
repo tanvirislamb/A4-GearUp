@@ -1,16 +1,16 @@
 enum Role {
-    CUSTOMER
-    PROVIDER
-    ADMIN
+  CUSTOMER
+  PROVIDER
+  ADMIN
 }
 
 enum UserStatus {
-    SUSPENDED
-    ACTIVE
+  SUSPENDED
+  ACTIVE
 }
 
 enum OrderStatus {
-    CONFIRM
-    MARK_PICKED_UP
-    MARK_RETURNED
+  CONFIRM
+  MARK_PICKED_UP
+  MARK_RETURNED
 }
