@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
-  "inlineSchema": "enum Role {\n  CUSTOMER\n  PROVIDER\n}\n\nenum UserStatus {\n  SUSPENDED\n  ACTIVE\n}\n\nenum OrderStatus {\n  CONFIRM\n  MARK_PICKED_UP\n  MARK_RETURNED\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String     @id @unique @default(cuid())\n  email     String     @unique\n  password  String\n  name      String\n  role      Role       @default(CUSTOMER)\n  status    UserStatus @default(ACTIVE)\n  createdAt DateTime   @default(now())\n  updatedAt DateTime   @updatedAt\n\n  @@map(\"users\")\n}\n",
+  "inlineSchema": "enum Role {\n  CUSTOMER\n  PROVIDER\n  ADMIN\n}\n\nenum UserStatus {\n  SUSPENDED\n  ACTIVE\n}\n\nenum OrderStatus {\n  CONFIRM\n  MARK_PICKED_UP\n  MARK_RETURNED\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String     @id @unique @default(cuid())\n  email     String     @unique\n  password  String\n  name      String\n  role      Role       @default(CUSTOMER)\n  status    UserStatus @default(ACTIVE)\n  createdAt DateTime   @default(now())\n  updatedAt DateTime   @updatedAt\n\n  @@map(\"users\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
