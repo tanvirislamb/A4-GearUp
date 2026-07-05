@@ -19,6 +19,9 @@ const Middleware = () => {
             const user = await prisma.user.findUnique({
                 where: {
                     email: decoded.email
+                },
+                omit: {
+                    password: true
                 }
             })
             if (!user) {

@@ -78,20 +78,18 @@ const loginUserInDb = async (payload: IUser) => {
     const accessToken = jwt.sign(jwtPayload, config.access_secret as string, { expiresIn: '1d' })
     const refreshToken = jwt.sign(jwtPayload, config.refresh_secret as string, { expiresIn: '7d' })
 
+    const { password: _, ...safeUser } = findUser
+
     return {
         accessToken,
         refreshToken,
-        user: findUser
+        user: safeUser
     }
 
 }
 
-const getMeFromDb = async () => {
-
-}
 
 export const authService = {
     createUserInDb,
-    loginUserInDb,
-    getMeFromDb
+    loginUserInDb
 }
