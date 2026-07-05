@@ -1,0 +1,16 @@
+enum Role {
+    CUSTOMER
+    PROVIDER
+    ADMIN
+}
+
+enum UserStatus{
+    SUSPENDED
+    ACTIVE
+}
+
+enum OrderStatus{
+    CONFIRM
+    MARK_PICKED_UP
+    MARK_RETURNED
+}
