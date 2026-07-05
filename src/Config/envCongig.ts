@@ -6,7 +6,8 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env") })
 const config = {
     port: process.env.PORT,
     db_string: process.env.DB_STRING,
-    secret: process.env.SECRET
+    access_secret: process.env.ACCESS_SECRET,
+    refresh_secret: process.env.REFRESH_SECRET
 }
 
 export default config
