@@ -1,5 +1,5 @@
-const createUserInDb = async () => {
-
+const createUserInDb = async (payload) => {
+    const { } = payload
 }
 
 const loginUserInDb = async () => {

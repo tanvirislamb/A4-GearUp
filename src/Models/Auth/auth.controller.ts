@@ -1,13 +1,14 @@
 import type { Request, Response } from "express"
 import { authService } from "./auth.service"
 import { response } from "@/Utils/res"
+import httpStatus from "http-status"
 
 const registerUser = async (req: Request, res: Response) => {
     try {
         const result = await authService.createUserInDb(req.body)
-        response(res, true,)
+        response(res, true, httpStatus.CREATED, 'User registered successfully', result)
     } catch (error) {
-
+        response(res, false, httpStatus.INTERNAL_SERVER_ERROR, 'Failed to register user', error)
     }
 }
 
