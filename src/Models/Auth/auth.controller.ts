@@ -29,7 +29,16 @@ const loginUser = async (req: Request, res: Response) => {
     }
 }
 
+const getMe = async (req: Request, res: Response) => {
+    try {
+
+    } catch (error) {
+
+    }
+}
+
 export const authController = {
     registerUser,
-    loginUser
+    loginUser,
+    getMe
 }

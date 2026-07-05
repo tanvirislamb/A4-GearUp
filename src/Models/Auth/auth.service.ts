@@ -86,7 +86,12 @@ const loginUserInDb = async (payload: IUser) => {
 
 }
 
+const getMeFromDb = async () => {
+
+}
+
 export const authService = {
     createUserInDb,
-    loginUserInDb
+    loginUserInDb,
+    getMeFromDb
 }
