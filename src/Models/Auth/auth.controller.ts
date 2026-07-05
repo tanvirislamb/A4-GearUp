@@ -31,9 +31,10 @@ const loginUser = async (req: Request, res: Response) => {
 
 const getMe = async (req: Request, res: Response) => {
     try {
-
-    } catch (error) {
-
+        const user = req.user
+        response(res, true, httpStatus.OK, 'User fetched successfully', user)
+    } catch (error: any) {
+        response(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || 'Failed to fetch user', error)
     }
 }
 
