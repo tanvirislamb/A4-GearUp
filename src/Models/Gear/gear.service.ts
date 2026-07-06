@@ -96,4 +96,7 @@ const getAllGearFromDb = async (query: IGearQuery) => {
     }
 }
 
-export const gearService = { createGearInDb, getAllGearFromDb }
+export const gearService = {
+    createGearInDb,
+    getAllGearFromDb
+}
