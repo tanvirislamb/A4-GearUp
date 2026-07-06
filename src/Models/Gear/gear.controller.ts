@@ -39,8 +39,21 @@ const gearById = async (req: Request, res: Response) => {
     }
 }
 
+const deleteGear = async (req: Request, res: Response) => {
+    try {
+        const gearId = req.params.id as string
+        const user = req.user as IUser
+
+        const result = await gearService.deleteGearFromDb(gearId, user)
+        response(res, true, httpStatus.OK, "Gear deleted successfully")
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to delete gear", error)
+    }
+}
+
 export const gearController = {
     createGear,
     getGear,
-    gearById
+    gearById,
+    deleteGear
 }

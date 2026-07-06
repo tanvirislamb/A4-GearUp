@@ -140,8 +140,35 @@ const getGearByIdFronDb = async (gearId: string) => {
     return gear
 }
 
+const deleteGearFromDb = async (gearId: string, user: IUser) => {
+    const role = user.role
+    if (role !== "PROVIDER" as string) {
+        throw new Error("Forbidden access")
+    }
+
+    const existingGear = await prisma.gearItem.findUnique({
+        where: { id: gearId }
+    })
+
+    if (!existingGear) {
+        throw new Error("No gear found")
+    }
+    if (existingGear.providerId !== user.id) {
+        throw new Error("You are not authorized to delete this gear")
+    }
+
+    const gear = await prisma.gearItem.delete({
+        where: {
+            id: gearId
+        }
+    })
+
+    return gear
+}
+
 export const gearService = {
     createGearInDb,
     getAllGearFromDb,
-    getGearByIdFronDb
+    getGearByIdFronDb,
+    deleteGearFromDb
 }
