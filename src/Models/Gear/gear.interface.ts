@@ -9,3 +9,12 @@ export interface IGear {
     providerId: string
     categoryId: string
 }
+
+export interface IGearQuery {
+    search?: string
+    catagory?: string
+    price?: string
+    brand?: string
+    page?: string
+    limit?: string
+}

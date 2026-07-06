@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import type { IUser } from "../Auth/user.interface"
-import type { IGear } from "./gear.interface"
+import type { IGear, IGearQuery } from "./gear.interface"
 
 const createGearInDb = async (payload: IGear, user: IUser) => {
     const role = user.role
@@ -43,4 +43,57 @@ const createGearInDb = async (payload: IGear, user: IUser) => {
     return gear
 }
 
-export const gearService = { createGearInDb }
+const getAllGearFromDb = async (query: IGearQuery) => {
+    const { search, catagory, price, brand, page = "1", limit = "10" } = query
+
+    const where: any = {}
+    if (search) {
+        where.OR = [
+            { name: { contains: search, mode: 'insensitive' } },
+            { description: { contains: search, mode: 'insensitive' } },
+            { brand: { contains: search, mode: 'insensitive' } }
+        ]
+    }
+    if (catagory) {
+        where.catagory = {
+            name: { equals: catagory, mode: 'insensitive' }
+        }
+    }
+    if (brand) {
+        where.brand = { contains: brand, mode: 'insensitive' }
+    }
+    if (price) {
+        where.rentalPrice = { lte: parseFloat(price) }
+    }
+
+    const skip = (parseInt(page) - 1) * parseInt(limit)
+    const take = parseInt(limit)
+
+    const gear = await prisma.gearItem.findMany({
+        where,
+        skip,
+        take,
+        include: {
+            catagory: {
+                select: { id: true, name: true }
+            },
+            provider: {
+                select: { id: true, name: true, email: true }
+            }
+        }
+    })
+
+    const total = await prisma.gearItem.count({ where })
+
+    return {
+        meta: {
+            page: parseInt(page),
+            limit: parseInt(limit),
+            total,
+            totalPages: Math.ceil(total / parseInt(limit))
+        },
+        data: gear
+    }
+}
+
+export const gearService = { createGearInDb, getAllGearFromDb }
