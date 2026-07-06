@@ -14,6 +14,7 @@ model GearItem {
     updatedAt DateTime @updatedAt
     provider  User     @relation(fields: [providerId], references: [id])
     catagory  Catagory @relation(fields: [categoryId], references: [id])
+    reviews   Review[]
 
     @@map("gearItems")
 }
