@@ -96,7 +96,52 @@ const getAllGearFromDb = async (query: IGearQuery) => {
     }
 }
 
+const getGearByIdFronDb = async (gearId: string) => {
+
+    const gear = await prisma.gearItem.findUnique({
+        where: {
+            id: gearId
+        },
+        include: {
+            catagory: {
+                select: {
+                    id: true,
+                    name: true,
+                    description: true
+                }
+            },
+            provider: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true
+                }
+            },
+            reviews: {
+                select: {
+                    comment: true,
+                    rating: true,
+                    customer: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    if (!gear) {
+        throw new Error("Gear not found")
+    }
+
+    return gear
+}
+
 export const gearService = {
     createGearInDb,
-    getAllGearFromDb
+    getAllGearFromDb,
+    getGearByIdFronDb
 }

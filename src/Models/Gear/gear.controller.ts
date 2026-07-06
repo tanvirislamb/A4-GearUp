@@ -29,7 +29,18 @@ const getGear = async (req: Request, res: Response) => {
     }
 }
 
+const gearById = async (req: Request, res: Response) => {
+    try {
+        const gearId = req.params.id as string
+        const result = await gearService.getGearByIdFronDb(gearId)
+        response(res, true, httpStatus.OK, "Gear retrieved successfully", result)
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to retrieve gear", error)
+    }
+}
+
 export const gearController = {
     createGear,
-    getGear
+    getGear,
+    gearById
 }
