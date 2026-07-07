@@ -5,6 +5,7 @@ import { providerRouter } from './Models/Provider/provider.router'
 import { gearRoutes } from './Models/Gear/gear.route'
 import { catagoryRoutes } from './Models/Catagory/catagory.route'
 import { adminRouter } from './Models/Admin/admin.route'
+import { rentalRouter } from './Models/RentalOrder/rental.route'
 
 const app: Application = express()
 
@@ -13,6 +14,7 @@ app.use(cookieParser())
 app.use('/api/auth', authRouter)
 app.use('/api/gear', gearRoutes)
 app.use('/api/categories', catagoryRoutes)
+app.use('/api/rentals', rentalRouter)
 app.use('/api/provider', providerRouter)
 app.use('/api/admin', adminRouter)
 

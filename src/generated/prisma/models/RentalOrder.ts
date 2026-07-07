@@ -311,7 +311,7 @@ export type RentalOrderCreateInput = {
   id?: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
   customer: Prisma.UserCreateNestedOneWithoutRentalOrderInput
@@ -324,7 +324,7 @@ export type RentalOrderUncheckedCreateInput = {
   gearItemId: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
 }
@@ -357,7 +357,7 @@ export type RentalOrderCreateManyInput = {
   gearItemId: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
 }
@@ -527,7 +527,7 @@ export type RentalOrderCreateWithoutGearItemInput = {
   id?: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
   customer: Prisma.UserCreateNestedOneWithoutRentalOrderInput
@@ -538,7 +538,7 @@ export type RentalOrderUncheckedCreateWithoutGearItemInput = {
   customerId: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
 }
@@ -587,7 +587,7 @@ export type RentalOrderCreateWithoutCustomerInput = {
   id?: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
   gearItem: Prisma.GearItemCreateNestedOneWithoutRentalOrderInput
@@ -598,7 +598,7 @@ export type RentalOrderUncheckedCreateWithoutCustomerInput = {
   gearItemId: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
 }
@@ -634,7 +634,7 @@ export type RentalOrderCreateManyGearItemInput = {
   customerId: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
 }
@@ -674,7 +674,7 @@ export type RentalOrderCreateManyCustomerInput = {
   gearItemId: string
   quantity: number
   status?: $Enums.RentalStatus
-  startDate?: Date | string
+  startDate: Date | string
   endDate: Date | string
   totalAmount: number
 }
