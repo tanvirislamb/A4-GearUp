@@ -60,8 +60,33 @@ const getAllGearFromDb = async () => {
     return gear
 }
 
+const getAllRentalsFromDb = async () => {
+    const rentals = await prisma.rentalOrder.findMany({
+        include: {
+            gearItem: {
+                omit: {
+                    createdAt: true,
+                    updatedAt: true
+                },
+                include: {
+                    provider: {
+                        omit: {
+                            password: true,
+                            createdAt: true,
+                            updatedAt: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    return rentals
+}
+
 export const adminService = {
     getAllUserFromDb,
     patchUserInDb,
-    getAllGearFromDb
+    getAllGearFromDb,
+    getAllRentalsFromDb
 }

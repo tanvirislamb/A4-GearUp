@@ -33,8 +33,18 @@ const getAllGear = async (req: Request, res: Response) => {
     }
 }
 
+const getAllRentals = async (req: Request, res: Response) => {
+    try {
+        const result = await adminService.getAllRentalsFromDb()
+        response(res, true, httpStatus.OK, "Rentals retrieved successfully", result)
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to retrieve rentals", error)
+    }
+}
+
 export const adminController = {
     getAllUser,
     patchUser,
-    getAllGear
+    getAllGear,
+    getAllRentals
 }
