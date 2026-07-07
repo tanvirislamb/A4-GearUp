@@ -14,6 +14,21 @@ const getOrders = async (req: Request, res: Response) => {
     }
 }
 
+const updateStatus = async (req: Request, res: Response) => {
+    try {
+        const user = req.user as IUser
+        const id = req.params.id as string
+        const status = req.body.status as string
+
+        const result = await providerService.updateStatusInDb(user, status, id)
+        response(res, true, httpStatus.OK, "Updated successfully", result)
+
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error.message || "Failed to update status", error)
+    }
+}
+
 export const providerController = {
-    getOrders
+    getOrders,
+    updateStatus
 }

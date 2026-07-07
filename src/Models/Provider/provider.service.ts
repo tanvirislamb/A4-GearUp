@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import type { IUser } from "../Auth/user.interface"
+import type { RentalStatus } from "@/generated/prisma/enums"
 
 const getOrdersFromDb = async (user: IUser) => {
     const role = user.role
@@ -37,6 +38,39 @@ const getOrdersFromDb = async (user: IUser) => {
     return orders
 }
 
+const updateStatusInDb = async (user: IUser, status: string, id: string) => {
+    const role = user.role
+    if (role !== "PROVIDER" as string) {
+        throw new Error("Your are not authorized for this action")
+    }
+
+    const existingRental = await prisma.rentalOrder.findFirst({
+        where: {
+            id: id,
+            gearItem: {
+                providerId: user.id
+            }
+        }
+    })
+
+    if (!existingRental) {
+        throw new Error("You can't update this")
+    }
+
+    const updateRental = await prisma.rentalOrder.update({
+        where: {
+            id: id
+        },
+        data: {
+            ...(status && { status: status.toUpperCase() as RentalStatus })
+        }
+    })
+
+    return updateRental
+
+}
+
 export const providerService = {
-    getOrdersFromDb
+    getOrdersFromDb,
+    updateStatusInDb
 }
