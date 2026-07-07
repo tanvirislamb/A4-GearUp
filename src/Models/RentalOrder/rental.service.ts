@@ -39,6 +39,20 @@ const placeOrderInDb = async (customerId: string, payload: IRental) => {
 
 }
 
+const getUserOrderFromDb = async (customerId: string) => {
+    const orders = await prisma.rentalOrder.findMany({
+        where: {
+            customerId: customerId
+        },
+        include: {
+            gearItem: true
+        }
+
+    })
+    return orders
+}
+
 export const rentalService = {
-    placeOrderInDb
+    placeOrderInDb,
+    getUserOrderFromDb
 }

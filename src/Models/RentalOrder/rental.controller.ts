@@ -14,6 +14,17 @@ const placeOrder = async (req: Request, res: Response) => {
     }
 }
 
+const getUserOrder = async (req: Request, res: Response) => {
+    try {
+        const customerId = req.user?.id as string
+        const result = await rentalService.getUserOrderFromDb(customerId)
+        response(res, true, httpStatus.OK, "Got your orders", result)
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to get orders", error)
+    }
+}
+
 export const rentalController = {
-    placeOrder
+    placeOrder,
+    getUserOrder
 }
