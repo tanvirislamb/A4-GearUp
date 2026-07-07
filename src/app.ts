@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import { providerRouter } from './Models/Provider/provider.router'
 import { gearRoutes } from './Models/Gear/gear.route'
 import { catagoryRoutes } from './Models/Catagory/catagory.route'
+import { adminRouter } from './Models/Admin/admin.route'
 
 const app: Application = express()
 
@@ -13,6 +14,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/gear', gearRoutes)
 app.use('/api/categories', catagoryRoutes)
 app.use('/api/provider', providerRouter)
+app.use('/api/admin', adminRouter)
 
 app.get('/', async (req: Request, res: Response) => {
     res.send("Hello client side")
