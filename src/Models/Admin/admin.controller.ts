@@ -23,7 +23,18 @@ const patchUser = async (req: Request, res: Response) => {
     }
 }
 
+const getAllGear = async (req: Request, res: Response) => {
+    try {
+
+        const result = await adminService.getAllGearFromDb()
+        response(res, true, httpStatus.OK, "Gear retrieved successfully", result)
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to retrieve gear", error)
+    }
+}
+
 export const adminController = {
     getAllUser,
-    patchUser
+    patchUser,
+    getAllGear
 }

@@ -37,7 +37,31 @@ const patchUserInDb = async (userId: string, body: IUser) => {
     return update
 }
 
+const getAllGearFromDb = async () => {
+    const gear = await prisma.gearItem.findMany({
+        include: {
+            catagory: {
+                select: {
+                    id: true,
+                    name: true,
+                    description: true
+                }
+            },
+            provider: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true
+                }
+            }
+        }
+    })
+
+    return gear
+}
+
 export const adminService = {
     getAllUserFromDb,
-    patchUserInDb
+    patchUserInDb,
+    getAllGearFromDb
 }

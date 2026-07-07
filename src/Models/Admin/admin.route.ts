@@ -7,5 +7,6 @@ const router = Router()
 
 router.get('/users', Middleware(), adminMiddleWare(), adminController.getAllUser)
 router.patch('/users/:id', Middleware(), adminMiddleWare(), adminController.patchUser)
+router.get('/gear', Middleware(), adminMiddleWare(), adminController.getAllGear)
 
 export const adminRouter = router
