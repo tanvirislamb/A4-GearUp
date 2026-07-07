@@ -51,9 +51,23 @@ const deleteGear = async (req: Request, res: Response) => {
     }
 }
 
+const putGear = async (req: Request, res: Response) => {
+    try {
+        const gearId = req.params.id as string
+        const user = req.user as IUser
+        const payload = req.body
+
+        const result = await gearService.putGearInDb(gearId, user, payload)
+        response(res, true, httpStatus.OK, "Gear updated successfully", result)
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to update gear", error)
+    }
+}
+
 export const gearController = {
     createGear,
     getGear,
     gearById,
-    deleteGear
+    deleteGear,
+    putGear
 }
