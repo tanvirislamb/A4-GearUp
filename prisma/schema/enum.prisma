@@ -14,3 +14,12 @@ enum OrderStatus {
   MARK_PICKED_UP
   MARK_RETURNED
 }
+
+enum RentalStatus {
+  PLACED
+  CONFIRMED
+  PAID
+  PICKED_UP
+  RETURNED
+  CANCELLED
+}

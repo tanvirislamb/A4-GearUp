@@ -1,0 +1,12 @@
+model RentalOrder {
+    id          String       @id @unique @default(cuid())
+    customerId  String
+    gearItemId  String
+    quantity    Int
+    status      RentalStatus @default(PLACED)
+    startDate   DateTime     @default(now())
+    endDate     DateTime
+    totalAmount Float
+    customer    User         @relation(fields: [customerId], references: [id])
+    gearItem    GearItem     @relation(fields: [gearItemId], references: [id])
+}

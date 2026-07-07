@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Catagory: 'Catagory',
   GearItem: 'GearItem',
+  RentalOrder: 'RentalOrder',
   Review: 'Review',
   User: 'User'
 } as const
@@ -100,6 +101,20 @@ export const GearItemScalarFieldEnum = {
 } as const
 
 export type GearItemScalarFieldEnum = (typeof GearItemScalarFieldEnum)[keyof typeof GearItemScalarFieldEnum]
+
+
+export const RentalOrderScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  gearItemId: 'gearItemId',
+  quantity: 'quantity',
+  status: 'status',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  totalAmount: 'totalAmount'
+} as const
+
+export type RentalOrderScalarFieldEnum = (typeof RentalOrderScalarFieldEnum)[keyof typeof RentalOrderScalarFieldEnum]
 
 
 export const ReviewScalarFieldEnum = {
