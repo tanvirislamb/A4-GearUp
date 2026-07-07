@@ -12,6 +12,18 @@ const getAllUser = async (req: Request, res: Response) => {
     }
 }
 
+const patchUser = async (req: Request, res: Response) => {
+    try {
+        const userId = req.params.id as string
+
+        const result = await adminService.patchUserInDb(userId, req.body)
+        response(res, true, httpStatus.OK, "User updated successfully", result)
+    } catch (error: any) {
+        errorResponse(res, false, httpStatus.INTERNAL_SERVER_ERROR, error?.message || "Failed to update user", error)
+    }
+}
+
 export const adminController = {
-    getAllUser
+    getAllUser,
+    patchUser
 }
