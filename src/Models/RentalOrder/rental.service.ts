@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import type { IRental } from "./rental.interface"
+import type { IUser } from "../Auth/user.interface"
 
 const placeOrderInDb = async (customerId: string, payload: IRental) => {
     const { gearItemId, quantity, startDate, endDate, } = payload
@@ -52,7 +53,38 @@ const getUserOrderFromDb = async (customerId: string) => {
     return orders
 }
 
+const getOrderByIdFromDb = async (orderId: string, userId: string) => {
+
+    const order = await prisma.rentalOrder.findUnique({
+        where: {
+            id: orderId
+        },
+        include: {
+            gearItem: {
+                include: {
+                    catagory: {
+                        select: {
+                            name: true,
+                            description: true
+                        }
+                    },
+                    provider: {
+                        omit: {
+                            password: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+    if (order?.customerId !== userId) {
+        throw new Error("You can't access this order!")
+    }
+    return order
+}
+
 export const rentalService = {
     placeOrderInDb,
-    getUserOrderFromDb
+    getUserOrderFromDb,
+    getOrderByIdFromDb
 }
