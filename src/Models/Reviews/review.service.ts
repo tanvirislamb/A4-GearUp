@@ -2,12 +2,15 @@ import { prisma } from "@/lib/prisma"
 import type { IReview } from "./review.interface"
 
 export const insertReviewToDb = async (userId: string, payload: IReview) => {
-    const { gearItemId, rating, comment } = payload
+    const { id, gearItemId, rating, comment } = payload
 
     const rental = await prisma.rentalOrder.findFirst({
         where: {
             customerId: userId,
-            gearItemId: gearItemId
+            id: id
+        },
+        orderBy: {
+            startDate: "desc"
         }
     })
     if (!rental) {
