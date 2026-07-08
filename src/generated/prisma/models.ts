@@ -10,6 +10,7 @@
  */
 export type * from './models/Catagory'
 export type * from './models/GearItem'
+export type * from './models/payment'
 export type * from './models/RentalOrder'
 export type * from './models/Review'
 export type * from './models/User'
