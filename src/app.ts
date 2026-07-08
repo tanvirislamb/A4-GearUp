@@ -8,10 +8,13 @@ import { adminRouter } from './Models/Admin/admin.route'
 import { rentalRouter } from './Models/RentalOrder/rental.route'
 import { reviewRouter } from './Models/Reviews/review.route'
 import { paymentRouter } from './Models/Payment/payment.route'
+import { paymentController } from './Models/Payment/payment.controller'
 
 const app: Application = express()
 
-app.use(json())
+app.post("/api/payment/confirm", express.raw({ type: "application/json" }), paymentController.confirmPayment)
+app.use(express.json())
+
 app.use(cookieParser())
 app.use('/api/auth', authRouter)
 app.use('/api/gear', gearRoutes)
