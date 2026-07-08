@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import Stripe from "stripe"
 import type { IPaymentCreate } from "./payment.interface"
+import config from "@/Config/envCongig"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -79,7 +80,7 @@ const createPaymentInDb = async (customerId: string, customerEmail: string, payl
 }
 
 const confirmPaymentInDb = async (payload: Buffer, signature: string) => {
-    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string
+    const webhookSecret = config.stripe_webhook_secret as string
 
     let event: Stripe.Event
 
