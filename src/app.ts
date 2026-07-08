@@ -7,6 +7,7 @@ import { catagoryRoutes } from './Models/Catagory/catagory.route'
 import { adminRouter } from './Models/Admin/admin.route'
 import { rentalRouter } from './Models/RentalOrder/rental.route'
 import { reviewRouter } from './Models/Reviews/review.route'
+import { paymentRouter } from './Models/Payment/payment.route'
 
 const app: Application = express()
 
@@ -16,6 +17,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/gear', gearRoutes)
 app.use('/api/categories', catagoryRoutes)
 app.use('/api/rentals', rentalRouter)
+app.use('/api/payments', paymentRouter)
 app.use('/api/provider', providerRouter)
 app.use('/api/reviews', reviewRouter)
 app.use('/api/admin', adminRouter)
