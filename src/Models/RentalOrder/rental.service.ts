@@ -23,8 +23,8 @@ const placeOrderInDb = async (customerId: string, payload: IRental) => {
             customerId,
             gearItemId,
             quantity,
-            startDate,
-            endDate,
+            startDate: new Date(startDate),
+            endDate: new Date(endDate),
             totalAmount: totalPrice,
         }
     })
