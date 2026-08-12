@@ -47,6 +47,9 @@ const getUserOrderFromDb = async (customerId: string) => {
         },
         include: {
             gearItem: true
+        },
+        orderBy: {
+            startDate: "desc"
         }
 
     })
