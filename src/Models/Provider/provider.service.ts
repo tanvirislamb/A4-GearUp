@@ -28,6 +28,9 @@ const getOrdersFromDb = async (user: IUser) => {
                     image: true
                 }
             }
+        },
+        orderBy: {
+            createdAt: "desc"
         }
     })
 
