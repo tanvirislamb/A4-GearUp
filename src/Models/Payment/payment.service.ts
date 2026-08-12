@@ -27,8 +27,8 @@ const createPaymentInDb = async (customerId: string, customerEmail: string, payl
         }
     })
 
-    if (existingPayment) {
-        throw new Error("Payment already exists for this rental order")
+    if (existingPayment?.status === "COMPLETED") {
+        throw new Error("Payment already completed for this rental order")
     }
     if (rentalOrder.status !== "CONFIRMED") {
         throw new Error("Order must be confirmed before payment")
@@ -61,16 +61,25 @@ const createPaymentInDb = async (customerId: string, customerEmail: string, payl
         cancel_url: `${process.env.CLIENT_URL || "http://localhost:3000"}/payment/cancel`,
     })
 
-    const payment = await prisma.payment.create({
-        data: {
-            customerId,
-            rentalOrderId,
-            transactionId: session.id,
-            amount: rentalOrder.totalAmount,
-            method: "STRIPE",
-            status: "PENDING",
-        }
-    })
+    const payment = existingPayment
+        ? await prisma.payment.update({
+            where: { id: existingPayment.id },
+            data: {
+                transactionId: session.id,
+                status: "PENDING",
+                paidAt: null,
+            }
+        })
+        : await prisma.payment.create({
+            data: {
+                customerId,
+                rentalOrderId,
+                transactionId: session.id,
+                amount: rentalOrder.totalAmount,
+                method: "STRIPE",
+                status: "PENDING",
+            }
+        })
 
     return {
         payment,
@@ -124,8 +133,11 @@ const confirmPaymentInDb = async (payload: Buffer, signature: string) => {
         const rentalOrderId = session.metadata?.rentalOrderId
 
         if (rentalOrderId) {
-            await prisma.payment.update({
-                where: { rentalOrderId },
+            await prisma.payment.updateMany({
+                where: {
+                    rentalOrderId,
+                    transactionId: session.id
+                },
                 data: { status: "FAILED" }
             })
         }
