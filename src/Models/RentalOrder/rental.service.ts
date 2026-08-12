@@ -49,7 +49,7 @@ const getUserOrderFromDb = async (customerId: string) => {
             gearItem: true
         },
         orderBy: {
-            startDate: "desc"
+            createdAt: "desc"
         }
 
     })

@@ -7,6 +7,7 @@ model RentalOrder {
     startDate   DateTime
     endDate     DateTime
     totalAmount Float
+    createdAt   DateTime  @default(now())
     payment     payment?
     customer    User         @relation(fields: [customerId], references: [id])
     gearItem    GearItem     @relation(fields: [gearItemId], references: [id])

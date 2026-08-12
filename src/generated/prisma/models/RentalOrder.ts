@@ -45,6 +45,7 @@ export type RentalOrderMinAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   totalAmount: number | null
+  createdAt: Date | null
 }
 
 export type RentalOrderMaxAggregateOutputType = {
@@ -56,6 +57,7 @@ export type RentalOrderMaxAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   totalAmount: number | null
+  createdAt: Date | null
 }
 
 export type RentalOrderCountAggregateOutputType = {
@@ -67,6 +69,7 @@ export type RentalOrderCountAggregateOutputType = {
   startDate: number
   endDate: number
   totalAmount: number
+  createdAt: number
   _all: number
 }
 
@@ -90,6 +93,7 @@ export type RentalOrderMinAggregateInputType = {
   startDate?: true
   endDate?: true
   totalAmount?: true
+  createdAt?: true
 }
 
 export type RentalOrderMaxAggregateInputType = {
@@ -101,6 +105,7 @@ export type RentalOrderMaxAggregateInputType = {
   startDate?: true
   endDate?: true
   totalAmount?: true
+  createdAt?: true
 }
 
 export type RentalOrderCountAggregateInputType = {
@@ -112,6 +117,7 @@ export type RentalOrderCountAggregateInputType = {
   startDate?: true
   endDate?: true
   totalAmount?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -210,6 +216,7 @@ export type RentalOrderGroupByOutputType = {
   startDate: Date
   endDate: Date
   totalAmount: number
+  createdAt: Date
   _count: RentalOrderCountAggregateOutputType | null
   _avg: RentalOrderAvgAggregateOutputType | null
   _sum: RentalOrderSumAggregateOutputType | null
@@ -244,6 +251,7 @@ export type RentalOrderWhereInput = {
   startDate?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   endDate?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   totalAmount?: Prisma.FloatFilter<"RentalOrder"> | number
+  createdAt?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.paymentWhereInput> | null
   customer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   gearItem?: Prisma.XOR<Prisma.GearItemScalarRelationFilter, Prisma.GearItemWhereInput>
@@ -258,6 +266,7 @@ export type RentalOrderOrderByWithRelationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   payment?: Prisma.paymentOrderByWithRelationInput
   customer?: Prisma.UserOrderByWithRelationInput
   gearItem?: Prisma.GearItemOrderByWithRelationInput
@@ -275,6 +284,7 @@ export type RentalOrderWhereUniqueInput = Prisma.AtLeast<{
   startDate?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   endDate?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   totalAmount?: Prisma.FloatFilter<"RentalOrder"> | number
+  createdAt?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.paymentWhereInput> | null
   customer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   gearItem?: Prisma.XOR<Prisma.GearItemScalarRelationFilter, Prisma.GearItemWhereInput>
@@ -289,6 +299,7 @@ export type RentalOrderOrderByWithAggregationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.RentalOrderCountOrderByAggregateInput
   _avg?: Prisma.RentalOrderAvgOrderByAggregateInput
   _max?: Prisma.RentalOrderMaxOrderByAggregateInput
@@ -308,6 +319,7 @@ export type RentalOrderScalarWhereWithAggregatesInput = {
   startDate?: Prisma.DateTimeWithAggregatesFilter<"RentalOrder"> | Date | string
   endDate?: Prisma.DateTimeWithAggregatesFilter<"RentalOrder"> | Date | string
   totalAmount?: Prisma.FloatWithAggregatesFilter<"RentalOrder"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"RentalOrder"> | Date | string
 }
 
 export type RentalOrderCreateInput = {
@@ -317,6 +329,7 @@ export type RentalOrderCreateInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   payment?: Prisma.paymentCreateNestedOneWithoutRentalOrderInput
   customer: Prisma.UserCreateNestedOneWithoutRentalOrderInput
   gearItem: Prisma.GearItemCreateNestedOneWithoutRentalOrderInput
@@ -331,6 +344,7 @@ export type RentalOrderUncheckedCreateInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   payment?: Prisma.paymentUncheckedCreateNestedOneWithoutRentalOrderInput
 }
 
@@ -341,6 +355,7 @@ export type RentalOrderUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.paymentUpdateOneWithoutRentalOrderNestedInput
   customer?: Prisma.UserUpdateOneRequiredWithoutRentalOrderNestedInput
   gearItem?: Prisma.GearItemUpdateOneRequiredWithoutRentalOrderNestedInput
@@ -355,6 +370,7 @@ export type RentalOrderUncheckedUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.paymentUncheckedUpdateOneWithoutRentalOrderNestedInput
 }
 
@@ -367,6 +383,7 @@ export type RentalOrderCreateManyInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
 }
 
 export type RentalOrderUpdateManyMutationInput = {
@@ -376,6 +393,7 @@ export type RentalOrderUpdateManyMutationInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RentalOrderUncheckedUpdateManyInput = {
@@ -387,6 +405,7 @@ export type RentalOrderUncheckedUpdateManyInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RentalOrderListRelationFilter = {
@@ -413,6 +432,7 @@ export type RentalOrderCountOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type RentalOrderAvgOrderByAggregateInput = {
@@ -429,6 +449,7 @@ export type RentalOrderMaxOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type RentalOrderMinOrderByAggregateInput = {
@@ -440,6 +461,7 @@ export type RentalOrderMinOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type RentalOrderSumOrderByAggregateInput = {
@@ -556,6 +578,7 @@ export type RentalOrderCreateWithoutGearItemInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   payment?: Prisma.paymentCreateNestedOneWithoutRentalOrderInput
   customer: Prisma.UserCreateNestedOneWithoutRentalOrderInput
 }
@@ -568,6 +591,7 @@ export type RentalOrderUncheckedCreateWithoutGearItemInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   payment?: Prisma.paymentUncheckedCreateNestedOneWithoutRentalOrderInput
 }
 
@@ -609,6 +633,7 @@ export type RentalOrderScalarWhereInput = {
   startDate?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   endDate?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
   totalAmount?: Prisma.FloatFilter<"RentalOrder"> | number
+  createdAt?: Prisma.DateTimeFilter<"RentalOrder"> | Date | string
 }
 
 export type RentalOrderCreateWithoutPaymentInput = {
@@ -618,6 +643,7 @@ export type RentalOrderCreateWithoutPaymentInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   customer: Prisma.UserCreateNestedOneWithoutRentalOrderInput
   gearItem: Prisma.GearItemCreateNestedOneWithoutRentalOrderInput
 }
@@ -631,6 +657,7 @@ export type RentalOrderUncheckedCreateWithoutPaymentInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
 }
 
 export type RentalOrderCreateOrConnectWithoutPaymentInput = {
@@ -656,6 +683,7 @@ export type RentalOrderUpdateWithoutPaymentInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.UserUpdateOneRequiredWithoutRentalOrderNestedInput
   gearItem?: Prisma.GearItemUpdateOneRequiredWithoutRentalOrderNestedInput
 }
@@ -669,6 +697,7 @@ export type RentalOrderUncheckedUpdateWithoutPaymentInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RentalOrderCreateWithoutCustomerInput = {
@@ -678,6 +707,7 @@ export type RentalOrderCreateWithoutCustomerInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   payment?: Prisma.paymentCreateNestedOneWithoutRentalOrderInput
   gearItem: Prisma.GearItemCreateNestedOneWithoutRentalOrderInput
 }
@@ -690,6 +720,7 @@ export type RentalOrderUncheckedCreateWithoutCustomerInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
   payment?: Prisma.paymentUncheckedCreateNestedOneWithoutRentalOrderInput
 }
 
@@ -727,6 +758,7 @@ export type RentalOrderCreateManyGearItemInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
 }
 
 export type RentalOrderUpdateWithoutGearItemInput = {
@@ -736,6 +768,7 @@ export type RentalOrderUpdateWithoutGearItemInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.paymentUpdateOneWithoutRentalOrderNestedInput
   customer?: Prisma.UserUpdateOneRequiredWithoutRentalOrderNestedInput
 }
@@ -748,6 +781,7 @@ export type RentalOrderUncheckedUpdateWithoutGearItemInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.paymentUncheckedUpdateOneWithoutRentalOrderNestedInput
 }
 
@@ -759,6 +793,7 @@ export type RentalOrderUncheckedUpdateManyWithoutGearItemInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RentalOrderCreateManyCustomerInput = {
@@ -769,6 +804,7 @@ export type RentalOrderCreateManyCustomerInput = {
   startDate: Date | string
   endDate: Date | string
   totalAmount: number
+  createdAt?: Date | string
 }
 
 export type RentalOrderUpdateWithoutCustomerInput = {
@@ -778,6 +814,7 @@ export type RentalOrderUpdateWithoutCustomerInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.paymentUpdateOneWithoutRentalOrderNestedInput
   gearItem?: Prisma.GearItemUpdateOneRequiredWithoutRentalOrderNestedInput
 }
@@ -790,6 +827,7 @@ export type RentalOrderUncheckedUpdateWithoutCustomerInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.paymentUncheckedUpdateOneWithoutRentalOrderNestedInput
 }
 
@@ -801,6 +839,7 @@ export type RentalOrderUncheckedUpdateManyWithoutCustomerInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -814,6 +853,7 @@ export type RentalOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   startDate?: boolean
   endDate?: boolean
   totalAmount?: boolean
+  createdAt?: boolean
   payment?: boolean | Prisma.RentalOrder$paymentArgs<ExtArgs>
   customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   gearItem?: boolean | Prisma.GearItemDefaultArgs<ExtArgs>
@@ -828,6 +868,7 @@ export type RentalOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   startDate?: boolean
   endDate?: boolean
   totalAmount?: boolean
+  createdAt?: boolean
   customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   gearItem?: boolean | Prisma.GearItemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rentalOrder"]>
@@ -841,6 +882,7 @@ export type RentalOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   startDate?: boolean
   endDate?: boolean
   totalAmount?: boolean
+  createdAt?: boolean
   customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   gearItem?: boolean | Prisma.GearItemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rentalOrder"]>
@@ -854,9 +896,10 @@ export type RentalOrderSelectScalar = {
   startDate?: boolean
   endDate?: boolean
   totalAmount?: boolean
+  createdAt?: boolean
 }
 
-export type RentalOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "gearItemId" | "quantity" | "status" | "startDate" | "endDate" | "totalAmount", ExtArgs["result"]["rentalOrder"]>
+export type RentalOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "gearItemId" | "quantity" | "status" | "startDate" | "endDate" | "totalAmount" | "createdAt", ExtArgs["result"]["rentalOrder"]>
 export type RentalOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payment?: boolean | Prisma.RentalOrder$paymentArgs<ExtArgs>
   customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -887,6 +930,7 @@ export type $RentalOrderPayload<ExtArgs extends runtime.Types.Extensions.Interna
     startDate: Date
     endDate: Date
     totalAmount: number
+    createdAt: Date
   }, ExtArgs["result"]["rentalOrder"]>
   composites: {}
 }
@@ -1321,6 +1365,7 @@ export interface RentalOrderFieldRefs {
   readonly startDate: Prisma.FieldRef<"RentalOrder", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"RentalOrder", 'DateTime'>
   readonly totalAmount: Prisma.FieldRef<"RentalOrder", 'Float'>
+  readonly createdAt: Prisma.FieldRef<"RentalOrder", 'DateTime'>
 }
     
 
